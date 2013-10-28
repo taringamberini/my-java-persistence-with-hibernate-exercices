@@ -16,6 +16,11 @@ public class HelloWorld {
     private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorld.class);
 
     public static void main(String[] args) {
+        HelloWorld helloWorld = new HelloWorld();
+        helloWorld.sayHello();
+    }
+
+    public void sayHello() {
         // First unit of work
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = session.beginTransaction();
@@ -43,7 +48,7 @@ public class HelloWorld {
         HibernateUtil.getSessionFactory().close();
     }
 
-    private static void getAllMessages() throws HibernateException {
+    private void getAllMessages() throws HibernateException {
         Session newSession = HibernateUtil.getSessionFactory().openSession();
         Transaction newTransaction = newSession.beginTransaction();
 
