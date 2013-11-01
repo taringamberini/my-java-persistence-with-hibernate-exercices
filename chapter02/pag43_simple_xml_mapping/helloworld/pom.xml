@@ -82,7 +82,7 @@
                 <version>1.7</version>
                 <executions>
                     <execution>
-                        <!-- Hibernatetool will generate everithing before running tests -->
+                        <!-- Hibernatetool will generate everything before running tests -->
                         <phase>test-compile</phase>
                         <configuration>
                             <target>
@@ -90,19 +90,20 @@
                                     For an introduction to the <hibernatetool> Ant Task see
                                     http://docs.jboss.org/tools/4.1.0.Final/en/hibernatetools/html_single/index.html#ant
                                 -->
-                                <echo message="Ant target, throught maven-antrun-plugin, started"/>
+                                <echo message="Ant target, through maven-antrun-plugin, started"/>
 
                                 <property name="maven_compile_classpath" refid="maven.compile.classpath"/>
                                 <property name="maven_test_classpath" refid="maven.test.classpath"/>
                                 <path id="hibernatetool.path">
                                     <!--
-                                        Dispite the documentation about referencing the Maven classpaths at
+                                        Despite what states the documentation about
+                                        referencing the Maven classpaths at
                                         http://maven.apache.org/plugins/maven-antrun-plugin/examples/classpaths.html
                                         writing:
-                                            <pathelement path="maven.compile.classpath" />
-                                        doesn't work (got the error "Reference hibernatetool.pfath not 
-                                        found"). So I have set ant properties that refer to appropriate
-                                        Maven classpathes.
+                                            <pathelement path="maven.test.classpath" />
+                                        does not work for this project. So I have set ant
+                                        properties that refer to appropriate Maven
+                                        classpathes.
                                     -->
                                     <pathelement path="${maven_compile_classpath}" />
                                     <pathelement path="${maven_test_classpath}" />
@@ -114,18 +115,20 @@
                                     I should have:
                                         * used classpathref="maven.plugin.classpath"
                                         * written all hibernatetool dependencies
-                                    but because there are too much dependencies to write, as shown at
+                                    but because there are too many dependencies to write, as shown at
                                     http://mvnrepository.com/artifact/org.hibernate/hibernate-tools/4.0.0-CR1,
-                                    I preferred to leverage on Maven dependency management.
+                                    I have preferred to leverage on Maven dependency management.
 
-                                    So I have declared under project.dependencies only the hibernate-tools
-                                    artifact dependency, leaving Maven finding out transitive dependencies.
-                                    But because dependencies on maven.plugin.classpath aren't packaged
-                                    in the jar I've expliciy excluded hibernate-tools, and its dependencies,
-                                    from this jar declaring them in the "test" scope. Finally I have noticed
-                                    that doing as I did hibernate-tools dependencies were both on the
-                                    maven.compile.classpath and the maven.test.classpath, so I have defined
-                                    a "hibernatetool.path" that groups the compile and the test classpath.
+                                    So I have declared hibernate-tools artifact as one of my project
+                                    dependency leaving Maven finding out the transitive dependencies.
+                                    But because dependencies on maven.plugin.classpath are not packaged
+                                    in the jar I have explicity excluded hibernate-tools, and its 
+                                    dependencies, from my project packaging declaring them in the
+                                    "test" scope.
+                                    Thus hibernate-tools dependencies were both on the
+                                    maven.compile.classpath and the maven.test.classpath, so I have
+                                    defined a "hibernatetool.path" that groups the compile and the
+                                    test classpath.
                                 -->
                                 <taskdef name="hibernatetool"
                                          classname="org.hibernate.tool.ant.HibernateToolTask"
@@ -150,7 +153,7 @@
                                         format="true" />
                                 </hibernatetool>
 
-                                <echo message="Ant target, throught maven-antrun-plugin, terminated"/>
+                                <echo message="Ant target, through maven-antrun-plugin, terminated"/>
                             </target>
                         </configuration>
                         <goals>
