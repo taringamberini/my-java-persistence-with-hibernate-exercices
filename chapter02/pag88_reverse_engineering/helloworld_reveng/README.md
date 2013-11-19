@@ -44,7 +44,7 @@ If the hsqldb server correctly starts you should see something like:
 [Server@1672c01]: From command line, use [Ctrl]+[C] to abort abruptly
 ```
 
-Copy the content of `helloworld.ddl` file
+Copy the content of `helloworld.ddl` file into the clipboard.
 
 Connect to the hsqldb server with your favourite db client (both
 `DatabaseManagerSwing` and your favourite IDE are good) using:
